@@ -74,4 +74,4 @@ async def conta(ctx):
     except Exception as e:
         await ctx.send(f"Ha ocurrido un error: {e}")
 
-bot.run("MTE1NTIwMTQyNjc1NTE3MDQwNg.GjjUrx.DT2te2yUeD0EA7VrfhlZBJtsbntrT4vvN8ly6E")
+bot.run("TOKEN")
