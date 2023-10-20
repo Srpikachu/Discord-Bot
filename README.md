@@ -5,6 +5,19 @@ Con $hello el bot te saludara y te dara la lista de codigos que tiene
 Para que los codigos funcionen tienes que poner al principio "$"
 Acontinuacion te dare para que sirve acada codigo 
 
+ABRIR EL DOCUMENTO
+
+
+
+
+
+
+
+
+
+
+
+
 $hello = Te saluda y una lista de los codigos
 $heh = Te dira "he" dependiendo del numero que le pongas adelante un ejemplo $heh 5 te soltara 5 he.
 $mem = Te soltara un meme talvez malo talvez bueno depende de la persona que lo mire .
