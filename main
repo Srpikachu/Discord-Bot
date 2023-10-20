@@ -1,0 +1,77 @@
+import discord
+from discord.ext import commands
+from bot_logic import gen_pass
+import os,random
+import requests
+
+imagen_random = ["meme1.jpg","meme2.jpg","meme3.jpg","meme4.jpg","meme5.jpg",]
+contamination_random = ["wea1.jpg","wea2.jpg","wea3.jpg","wea4.jpg",]
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hola, soy {bot.user} y esta es mi lista de comandos heh,sond,mem,meme,duck,obj_reciclaje,conta para saber como funciona revise comand en Github.')
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+@bot.command()
+async def sond(ctx, arg):
+    await ctx.send(arg)
+
+@bot.command()
+async def mem(ctx):
+    with open('imagen/mymeme.jpg', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+
+
+@bot.command()
+async def meme(ctx):
+    img_meme = random.choice(imagen_random)
+    with open(f'imagen/{img_meme}', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+def get_duck_image_url():    
+    url = 'https://random-d.uk/api/random'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+@bot.command('duck')
+async def duck(ctx):
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+@bot.command()
+async def obj_reciclaje(ctx):
+    tips = [
+        "el Papel",
+        "el Plasticos",
+        "el Carton",
+        "la Telas",
+        "el vidrio",
+        "la madera",
+    ]
+    await ctx.send(random.choice(tips))
+
+@bot.command()
+async def conta(ctx):
+    try:
+        contami = random.choice(contamination_random)
+        with open(f'contamination/{contami}', 'rb') as f:
+            picture = discord.File(f)
+            await ctx.send(file=picture)
+    except Exception as e:
+        await ctx.send(f"Ha ocurrido un error: {e}")
+
+bot.run("MTE1NTIwMTQyNjc1NTE3MDQwNg.GjjUrx.DT2te2yUeD0EA7VrfhlZBJtsbntrT4vvN8ly6E")
